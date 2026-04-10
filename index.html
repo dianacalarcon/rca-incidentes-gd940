@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe RCA - GD940 Movilidad - Abril 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#f4f6f9;color:#333;padding:2rem;max-width:1200px;margin:0 auto}
+header{background:linear-gradient(135deg,#c0392b,#e74c3c);color:#fff;padding:1.5rem 2rem;border-radius:8px;margin-bottom:2rem}
+header h1{font-size:1.4rem}
+header p{font-size:.85rem;opacity:.85;margin-top:.3rem}
+.exec-summary{background:#fff;border-radius:8px;padding:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.1);margin-bottom:2rem}
+.exec-summary h2{font-size:1.1rem;color:#c0392b;margin-bottom:1rem;border-bottom:2px solid #c0392b;padding-bottom:.4rem}
+.summary-table{width:100%;border-collapse:collapse;margin-bottom:1rem}
+.summary-table th{background:#2c3e50;color:#fff;padding:.6rem .8rem;text-align:left;font-size:.75rem;font-weight:600}
+.summary-table td{padding:.55rem .8rem;font-size:.78rem;border-bottom:1px solid #eee}
+.summary-table tr:hover td{background:#f5f8ff}
+.complexity{display:inline-block;padding:.15rem .5rem;border-radius:4px;font-size:.7rem;font-weight:700}
+.c-alta{background:#fde8e8;color:#c0392b}
+.c-media{background:#fff3cd;color:#856404}
+.c-baja{background:#e3f9e5;color:#1a7f37}
+.cluster{background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.1);margin-bottom:1.5rem;overflow:hidden}
+.cluster-header{padding:1rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-left:4px solid #c0392b}
+.cluster-header h3{font-size:.95rem;font-weight:600}
+.cluster-header .badge{background:#fde8e8;color:#c0392b;padding:.15rem .5rem;border-radius:12px;font-size:.72rem;font-weight:700}
+.cluster-body{padding:1rem 1.5rem;border-top:1px solid #eee}
+.cluster-body h4{font-size:.85rem;color:#2c3e50;margin:.8rem 0 .4rem;font-weight:600}
+.cluster-body p,.cluster-body li{font-size:.82rem;line-height:1.5;color:#555}
+.cluster-body ul{margin-left:1.2rem;margin-bottom:.5rem}
+.ids{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.3rem}
+.ids span{background:#e6f0ff;color:#0052cc;padding:.1rem .4rem;border-radius:4px;font-size:.7rem;font-weight:600}
+.collapsed .cluster-body{display:none}
+footer{margin-top:2rem;text-align:center;font-size:.75rem;color:#aaa}
+.metric-cards{display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+.m-card{background:#fff;border-radius:8px;padding:1rem;flex:1;min-width:130px;box-shadow:0 1px 4px rgba(0,0,0,.1);text-align:center}
+.m-card h3{font-size:.65rem;color:#666;text-transform:uppercase;letter-spacing:.05em}
+.m-card p{font-size:1.5rem;font-weight:700;color:#c0392b;margin-top:.2rem}
+.m-card span{font-size:.72rem;color:#888}
+</style>
+</head>
+<body>
+<header>
+<h1>Informe de Análisis de Causa Raíz (RCA)</h1>
+<p>Proyecto GD940 — Squad Movilidad — 10 de Abril 2026 — 23 incidentes analizados</p>
+</header>
+
+<div class="metric-cards">
+<div class="m-card"><h3>Incidentes</h3><p>23</p><span>analizados</span></div>
+<div class="m-card"><h3>Clústeres</h3><p>7</p><span>soluciones maestras</span></div>
+<div class="m-card"><h3>Impacto</h3><p>100%</p><span>cobertura de incidentes</span></div>
+<div class="m-card"><h3>Críticos</h3><p>3</p><span>complejidad alta</span></div>
+</div>
+
+<div class="exec-summary">
+<h2>Resumen Ejecutivo — Tabla de Soluciones</h2>
+<table class="summary-table">
+<thead><tr><th>#</th><th>Solución Maestra</th><th>Complejidad</th><th>Incidentes Cubiertos</th><th>Causa Raíz</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Corrección Motor de Liquidación y Primas</td><td><span class="complexity c-alta">ALTA</span></td><td>7</td><td>Lógica de cálculo de primas/facturación</td></tr>
+<tr><td>2</td><td>Estabilización Migración Siniestros a SIPO</td><td><span class="complexity c-alta">ALTA</span></td><td>4</td><td>Job de migración y cálculo deducibles SMMLV</td></tr>
+<tr><td>3</td><td>Sincronización Datos Externos (SISA/RUNT)</td><td><span class="complexity c-media">MEDIA</span></td><td>3</td><td>Desincronización entre sistemas externos y core</td></tr>
+<tr><td>4</td><td>Estabilización Cotizador Autos (Simon Ventas/Web)</td><td><span class="complexity c-media">MEDIA</span></td><td>3</td><td>Timeouts y errores en flujo de cotización</td></tr>
+<tr><td>5</td><td>Corrección Generación PDF Endosos</td><td><span class="complexity c-media">MEDIA</span></td><td>2</td><td>Lógica de distribución de primas en PDF</td></tr>
+<tr><td>6</td><td>Corrección Reporte Pólizas Colectivas (GoAnyWhere)</td><td><span class="complexity c-baja">BAJA</span></td><td>2</td><td>Truncamiento por longitud de nombre tomador</td></tr>
+<tr><td>7</td><td>Corrección Permisos y Configuración Usuarios Tronador</td><td><span class="complexity c-baja">BAJA</span></td><td>2</td><td>Configuración de perfiles y permisos</td></tr>
+</tbody>
+</table>
+</div>
+
+<script>function toggle(id){document.getElementById(id).classList.toggle('collapsed')}</script>
+
+<!-- CLUSTER 1 -->
+<div class="cluster" id="c1">
+<div class="cluster-header" onclick="toggle('c1')">
+<h3>1. Corrección Motor de Liquidación y Primas</h3>
+<span class="badge">7 incidentes · Complejidad ALTA</span>
+</div>
+<div class="cluster-body">
+<h4>🔍 Causa Raíz</h4>
+<p>El motor de liquidación de primas presenta defectos sistémicos en múltiples escenarios: modificaciones de pólizas, exclusiones/inclusiones de riesgos, cambio de plan y facturación periódica. La lógica de cálculo no recalcula correctamente las primas cuando se aplican endosos posteriores a la emisión, generando diferencias entre el valor esperado y el facturado. Específicamente:</p>
+<ul>
+<li>Al modificar condiciones (ej. disminuir valor asegurado), la prima aumenta en lugar de disminuir — falta de inversión del signo en el delta de prima.</li>
+<li>Al cambiar de plan Premium a Standard, el sistema cobra más en lugar de menos — la lógica no recalcula la base tarifaria del nuevo plan.</li>
+<li>Las exclusiones de coberturas devuelven montos incorrectos (ej. $71K vs $250K esperados) — el prorrateo temporal no se aplica correctamente.</li>
+<li>La facturación mensual no refleja endosos aplicados post-emisión — el job de facturación toma la prima original sin considerar ajustes.</li>
+<li>Las fechas de corte de facturación se desplazan del día pactado (ej. del 28 al 31) — error en el cálculo de fin de mes.</li>
+<li>Diferencias entre primas de inclusión vs exclusión para misma tasa y valor asegurado.</li>
+</ul>
+
+<h4>🛠️ Acciones Definitivas</h4>
+<ul>
+<li>Refactorizar el módulo de cálculo de primas en endosos para que recalcule siempre desde la base vigente (suma de endosos previos), no desde la emisión original.</li>
+<li>Implementar validación de consistencia: prima_exclusión ≤ prima_inclusión para mismo riesgo/tasa/período.</li>
+<li>Corregir la lógica de prorrateo temporal en exclusiones de coberturas para usar días exactos de vigencia restante.</li>
+<li>Corregir el job de facturación para que consolide todos los endosos vigentes antes de generar la factura.</li>
+<li>Fijar la fecha de corte de facturación al día de emisión original, usando lógica de "último día del mes" solo cuando el día no existe en el mes.</li>
+<li>Implementar tests de regresión automatizados para los 7 escenarios identificados.</li>
+</ul>
+
+<h4>⏱️ Esfuerzo Técnico</h4>
+<p>Complejidad <span class="complexity c-alta">ALTA</span> — Estimación: 3-4 sprints. Requiere refactorización del core de liquidación, testing extensivo con datos reales y validación con el área de operaciones.</p>
+
+<h4>📎 Incidentes Vinculados</h4>
+<div class="ids">
+<span>MDSB-1014520</span><span>MDSB-1014515</span><span>MDSB-1013099</span><span>MDSB-1013007</span><span>MDSB-1010699</span><span>MDSB-992543</span><span>MDSB-944568</span>
+</div>
+</div></div>
+
+<!-- CLUSTER 2 -->
+<div class="cluster" id="c2">
+<div class="cluster-header" onclick="toggle('c2')" style="border-color:#e67e22">
+<h3>2. Estabilización Migración Siniestros a SIPO</h3>
+<span class="badge">4 incidentes · Complejidad ALTA</span>
+</div>
+<div class="cluster-body">
+<h4>🔍 Causa Raíz</h4>
+<p>El proceso de migración de siniestros desde el Core (Tronador) hacia SIPO presenta dos fallos críticos:</p>
+<ul>
+<li>El cálculo del deducible usa el SMMLV del año anterior en lugar del vigente. La parametrización del SMMLV no se actualiza automáticamente al inicio de cada año fiscal.</li>
+<li>Siniestros con condición "0% — 0,8 SMMLV" migran con deducible $0 en lugar del valor proporcional. La lógica interpreta "0%" como valor absoluto cero, ignorando el componente SMMLV.</li>
+<li>El job de migración falla silenciosamente para casos de Arval, sin generar alertas ni logs de error. El servicio no maneja correctamente las excepciones de formato de datos específicos de Arval.</li>
+<li>Siniestros quedan en estado "provisorio por control técnico" sin migrar a SIPO después de modificaciones (ej. cambio de taller).</li>
+</ul>
+
+<h4>🛠️ Acciones Definitivas</h4>
+<ul>
+<li>Crear tabla de parametrización de SMMLV con vigencia temporal y job automático de actualización al 1 de enero.</li>
+<li>Corregir la lógica de cálculo: cuando condición = "0% — X SMMLV", deducible = X × SMMLV_vigente (nunca $0).</li>
+<li>Implementar manejo de excepciones específico para formato Arval en el job de migración con alertas a Datadog.</li>
+<li>Agregar validación post-migración que compare deducible calculado vs esperado y genere alerta si difiere > 1%.</li>
+<li>Corregir el flujo de estados para que modificaciones en siniestros no bloqueen la migración a SIPO.</li>
+</ul>
+
+<h4>⏱️ Esfuerzo Técnico</h4>
+<p>Complejidad <span class="complexity c-alta">ALTA</span> — Estimación: 2-3 sprints. Requiere coordinación con el equipo de SIPO y validación con datos históricos de siniestros migrados incorrectamente.</p>
+
+<h4>📎 Incidentes Vinculados</h4>
+<div class="ids">
+<span>MDSB-1005736</span><span>MDSB-1007460</span><span>MDSB-1000328</span><span>MDSB-993457</span>
+</div>
+</div></div>
+
+<!-- CLUSTER 3 -->
+<div class="cluster" id="c3">
+<div class="cluster-header" onclick="toggle('c3')" style="border-color:#2980b9">
+<h3>3. Sincronización Datos Externos (SISA/RUNT)</h3>
+<span class="badge">3 incidentes · Complejidad MEDIA</span>
+</div>
+<div class="cluster-body">
+<h4>🔍 Causa Raíz</h4>
+<p>Existe un desfase de sincronización entre los sistemas externos (SISA, RUNT) y el core de Bolívar. Pólizas anuladas internamente siguen apareciendo como vigentes en SISA, lo que permite emisiones automáticas sin restricción. Adicionalmente, el proceso de cargue de pólizas por la nueva opción de RUNT presenta errores no documentados, y el proceso de renovación batch falla silenciosamente para ciertos usuarios sin generar logs.</p>
+<ul>
+<li>Las cancelaciones de pólizas no se transmiten correctamente a SISA — el servicio de notificación falla sin reintentos.</li>
+<li>El nuevo endpoint de RUNT para cargue de pólizas Andina no está correctamente integrado.</li>
+<li>El batch de renovación no valida permisos de usuario antes de ejecutar, fallando sin error visible.</li>
+</ul>
+
+<h4>🛠️ Acciones Definitivas</h4>
+<ul>
+<li>Implementar cola de reintentos (retry queue) para notificaciones a SISA con dead-letter queue y alertas.</li>
+<li>Agregar validación de consistencia periódica: comparar estado de pólizas en core vs SISA y generar reporte de discrepancias.</li>
+<li>Completar la integración con el nuevo endpoint RUNT para cargue Andina, incluyendo documentación y manejo de errores.</li>
+<li>Agregar validación de permisos de usuario en el batch de renovación con logging detallado.</li>
+</ul>
+
+<h4>⏱️ Esfuerzo Técnico</h4>
+<p>Complejidad <span class="complexity c-media">MEDIA</span> — Estimación: 1-2 sprints.</p>
+
+<h4>📎 Incidentes Vinculados</h4>
+<div class="ids">
+<span>MDSB-1008620</span><span>MDSB-1015519</span><span>MDSB-987270</span>
+</div>
+</div></div>
+
+<!-- CLUSTER 4 -->
+<div class="cluster" id="c4">
+<div class="cluster-header" onclick="toggle('c4')" style="border-color:#8e44ad">
+<h3>4. Estabilización Cotizador Autos (Simon Ventas/Web)</h3>
+<span class="badge">3 incidentes · Complejidad MEDIA</span>
+</div>
+<div class="cluster-body">
+<h4>🔍 Causa Raíz</h4>
+<p>El cotizador de autos (Simon Cotizadores y Simon Web) presenta fallos intermitentes durante el proceso de cotización y emisión:</p>
+<ul>
+<li>El proceso de cotización se queda "cargando" indefinidamente sin generar resultado — timeout en la llamada al servicio de tarificación sin manejo de error graceful.</li>
+<li>Error "vehículos" al realizar cotización — fallo en la consulta a Fasecolda/caché de vehículos que no se maneja correctamente en el frontend.</li>
+<li>Al expedir una inclusión, el sistema se queda "pensando" y luego muestra "Fallas técnicas", dejando la póliza en estado inconsistente (bloqueada para modificaciones posteriores).</li>
+</ul>
+
+<h4>🛠️ Acciones Definitivas</h4>
+<ul>
+<li>Implementar circuit breaker en las llamadas al servicio de tarificación con timeout configurable y fallback informativo.</li>
+<li>Agregar manejo de errores graceful en el frontend: si el servicio no responde en X segundos, mostrar mensaje claro y permitir reintentar.</li>
+<li>Implementar transacciones atómicas en el proceso de emisión/inclusión: si falla, hacer rollback completo para no dejar pólizas en estado inconsistente.</li>
+<li>Agregar logging estructurado en cada paso del flujo de cotización para facilitar diagnóstico.</li>
+</ul>
+
+<h4>⏱️ Esfuerzo Técnico</h4>
+<p>Complejidad <span class="complexity c-media">MEDIA</span> — Estimación: 1-2 sprints.</p>
+
+<h4>📎 Incidentes Vinculados</h4>
+<div class="ids">
+<span>MDSB-1018631</span><span>MDSB-1017078</span><span>MDSB-1018595</span>
+</div>
+</div></div>
+
+<!-- CLUSTER 5 -->
+<div class="cluster" id="c5">
+<div class="cluster-header" onclick="toggle('c5')" style="border-color:#27ae60">
+<h3>5. Corrección Generación PDF Endosos</h3>
+<span class="badge">2 incidentes · Complejidad MEDIA</span>
+</div>
+<div class="cluster-body">
+<h4>🔍 Causa Raíz</h4>
+<p>La generación de PDFs para endosos de inclusión distribuye incorrectamente las primas entre riesgos. Cuando se incluyen múltiples riesgos en un mismo endoso, el PDF de un riesgo muestra la prima acumulada de todos los riesgos, mientras que el otro muestra solo el residuo. La lógica de generación de PDF no itera correctamente por riesgo individual, sino que toma el total del endoso para el primer riesgo.</p>
+
+<h4>🛠️ Acciones Definitivas</h4>
+<ul>
+<li>Corregir la query/lógica de generación de PDF para que filtre la prima por riesgo individual dentro del endoso.</li>
+<li>Agregar validación: suma de primas por riesgo en PDF = prima total del endoso.</li>
+</ul>
+
+<h4>⏱️ Esfuerzo Técnico</h4>
+<p>Complejidad <span class="complexity c-media">MEDIA</span> — Estimación: 1 sprint.</p>
+
+<h4>📎 Incidentes Vinculados</h4>
+<div class="ids">
+<span>MDSB-1019322</span><span>MDSB-1013501</span>
+</div>
+</div></div>
+
+<!-- CLUSTER 6 -->
+<div class="cluster" id="c6">
+<div class="cluster-header" onclick="toggle('c6')" style="border-color:#16a085">
+<h3>6. Corrección Reporte Pólizas Colectivas (GoAnyWhere/CR502232)</h3>
+<span class="badge">2 incidentes · Complejidad BAJA</span>
+</div>
+<div class="cluster-body">
+<h4>🔍 Causa Raíz</h4>
+<p>El programa CR502232 de Tronador que genera reportes de pólizas colectivas trunca la información cuando el nombre del tomador excede cierta longitud de caracteres. El campo de nombre en la query/reporte tiene un tamaño fijo que no contempla nombres largos de razones sociales (ej. "FONDO DE EMPLEADOS DE LA INDUSTRIA FARMACEUTICA Y CONSUMO MA..."). Adicionalmente, hay una discrepancia entre la producción registrada en Oracle vs la contabilidad entregada por planeación (~$2B de diferencia).</p>
+
+<h4>🛠️ Acciones Definitivas</h4>
+<ul>
+<li>Ampliar el campo de nombre del tomador en el reporte CR502232 a VARCHAR2(200) o usar CLOB.</li>
+<li>Agregar validación de longitud con truncamiento controlado + indicador de truncamiento.</li>
+<li>Investigar y documentar la discrepancia Oracle vs contabilidad — puede ser un tema de timing de cierre o filtros diferentes en las consultas.</li>
+</ul>
+
+<h4>⏱️ Esfuerzo Técnico</h4>
+<p>Complejidad <span class="complexity c-baja">BAJA</span> — Estimación: 3-5 días.</p>
+
+<h4>📎 Incidentes Vinculados</h4>
+<div class="ids">
+<span>MDSB-960862</span><span>MDSB-980327</span>
+</div>
+</div></div>
+
+<!-- CLUSTER 7 -->
+<div class="cluster" id="c7">
+<div class="cluster-header" onclick="toggle('c7')" style="border-color:#7f8c8d">
+<h3>7. Corrección Permisos, Accesos y Estados Inconsistentes</h3>
+<span class="badge">2 incidentes · Complejidad BAJA</span>
+</div>
+<div class="cluster-body">
+<h4>🔍 Causa Raíz</h4>
+<p>Incidentes relacionados con configuración de perfiles y estados inconsistentes en pólizas:</p>
+<ul>
+<li>Usuarios nuevos no pueden acceder a módulos de automóviles en Simon Web — falta de asignación de perfil/rol al módulo específico durante el onboarding.</li>
+<li>Pólizas quedan con "marca de terminación incorrecta" que bloquea la corrección de endosos — el proceso de terminación no valida el estado previo antes de marcar.</li>
+</ul>
+
+<h4>🛠️ Acciones Definitivas</h4>
+<ul>
+<li>Documentar y automatizar el checklist de onboarding de usuarios para Simon Web, incluyendo asignación de módulos.</li>
+<li>Agregar validación de estado previo antes de aplicar marca de terminación, con opción de rollback administrativo.</li>
+</ul>
+
+<h4>⏱️ Esfuerzo Técnico</h4>
+<p>Complejidad <span class="complexity c-baja">BAJA</span> — Estimación: 3-5 días.</p>
+
+<h4>📎 Incidentes Vinculados</h4>
+<div class="ids">
+<span>MDSB-1018886</span><span>MDSB-999256</span>
+</div>
+</div></div>
+
+<footer>
+<p>Generado el 10/04/2026 — Fuente: Jira MDSB (23 incidentes) — Proyecto GD940 Squad Movilidad</p>
+<p>Metodología: Análisis de Causa Raíz (RCA) con agrupación por clúster de solución maestra</p>
+</footer>
+</body>
+</html>

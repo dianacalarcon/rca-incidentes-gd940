@@ -55,16 +55,18 @@ footer{margin-top:2rem;text-align:center;font-size:.75rem;color:#aaa}
 <div class="exec-summary">
 <h2>Resumen Ejecutivo — Tabla de Soluciones</h2>
 <table class="summary-table">
-<thead><tr><th>#</th><th>Solución Maestra</th><th>Complejidad</th><th>Incidentes Cubiertos</th><th>Causa Raíz</th><th>Esfuerzo Técnico</th></tr></thead>
+<thead><tr><th>#</th><th>Solución Maestra</th><th>Complejidad</th><th>Incidentes Cubiertos</th><th>Causa Raíz</th><th>Esfuerzo Técnico</th><th>Tiempo Estimado (sprint = 4 sem)</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Corrección Motor de Liquidación y Primas</td><td><span class="complexity c-alta">ALTA</span></td><td>7</td><td>Lógica de cálculo de primas/facturación</td><td>3-4 sprints</td></tr>
-<tr><td>2</td><td>Estabilización Migración Siniestros a SIPO</td><td><span class="complexity c-alta">ALTA</span></td><td>4</td><td>Job de migración y cálculo deducibles SMMLV</td><td>2-3 sprints</td></tr>
-<tr><td>3</td><td>Sincronización Datos Externos (SISA/RUNT)</td><td><span class="complexity c-media">MEDIA</span></td><td>3</td><td>Desincronización entre sistemas externos y core</td><td>1-2 sprints</td></tr>
-<tr><td>4</td><td>Estabilización Cotizador Autos (Simon Ventas/Web)</td><td><span class="complexity c-media">MEDIA</span></td><td>3</td><td>Timeouts y errores en flujo de cotización</td><td>1-2 sprints</td></tr>
-<tr><td>5</td><td>Corrección Generación PDF Endosos</td><td><span class="complexity c-media">MEDIA</span></td><td>2</td><td>Lógica de distribución de primas en PDF</td><td>1 sprint</td></tr>
-<tr><td>6</td><td>Corrección Reporte Pólizas Colectivas (GoAnyWhere)</td><td><span class="complexity c-baja">BAJA</span></td><td>2</td><td>Truncamiento por longitud de nombre tomador</td><td>3-5 días</td></tr>
-<tr><td>7</td><td>Corrección Permisos y Configuración Usuarios Tronador</td><td><span class="complexity c-baja">BAJA</span></td><td>2</td><td>Configuración de perfiles y permisos</td><td>3-5 días</td></tr>
+<tr><td>1</td><td>Corrección Motor de Liquidación y Primas</td><td><span class="complexity c-alta">ALTA</span></td><td>7</td><td>Lógica de cálculo de primas/facturación</td><td>3-4 sprints</td><td>12-16 semanas (3-4 meses)</td></tr>
+<tr><td>2</td><td>Estabilización Migración Siniestros a SIPO</td><td><span class="complexity c-alta">ALTA</span></td><td>4</td><td>Job de migración y cálculo deducibles SMMLV</td><td>2-3 sprints</td><td>8-12 semanas (2-3 meses)</td></tr>
+<tr><td>3</td><td>Sincronización Datos Externos (SISA/RUNT)</td><td><span class="complexity c-media">MEDIA</span></td><td>3</td><td>Desincronización entre sistemas externos y core</td><td>1-2 sprints</td><td>4-8 semanas (1-2 meses)</td></tr>
+<tr><td>4</td><td>Estabilización Cotizador Autos (Simon Ventas/Web)</td><td><span class="complexity c-media">MEDIA</span></td><td>3</td><td>Timeouts y errores en flujo de cotización</td><td>1-2 sprints</td><td>4-8 semanas (1-2 meses)</td></tr>
+<tr><td>5</td><td>Corrección Generación PDF Endosos</td><td><span class="complexity c-media">MEDIA</span></td><td>2</td><td>Lógica de distribución de primas en PDF</td><td>1 sprint</td><td>4 semanas (1 mes)</td></tr>
+<tr><td>6</td><td>Corrección Reporte Pólizas Colectivas (GoAnyWhere)</td><td><span class="complexity c-baja">BAJA</span></td><td>2</td><td>Truncamiento por longitud de nombre tomador</td><td>3-5 días</td><td>3-5 días</td></tr>
+<tr><td>7</td><td>Corrección Permisos y Configuración Usuarios Tronador</td><td><span class="complexity c-baja">BAJA</span></td><td>2</td><td>Configuración de perfiles y permisos</td><td>3-5 días</td><td>3-5 días</td></tr>
 </tbody>
+</table>
+<p style="font-size:.72rem;color:#888;margin-top:.8rem;font-style:italic;background:#fff8e1;padding:.6rem .8rem;border-radius:4px;border-left:3px solid #f0ad4e">⚠️ Nota: Las estimaciones de esfuerzo técnico son referenciales, basadas en el análisis de complejidad inferida a partir de los incidentes reportados en Jira. No se tuvo acceso al código fuente ni a la arquitectura interna del sistema. Estas estimaciones deben ser validadas y ajustadas por el equipo técnico de desarrollo que conoce la implementación real. 1 sprint = 4 semanas (estándar compañía).</p>
 </table>
 </div>
 

@@ -57,11 +57,11 @@ footer{margin-top:2rem;text-align:center;font-size:.75rem;color:#aaa}
 <table class="summary-table">
 <thead><tr><th>#</th><th>Solución Maestra</th><th>Complejidad</th><th>Incidentes Cubiertos</th><th>Causa Raíz</th><th>Esfuerzo Técnico</th><th>Tiempo Estimado (sprint = 4 sem)</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Corrección Motor de Liquidación y Primas</td><td><span class="complexity c-alta">ALTA</span></td><td>7</td><td>Lógica de cálculo de primas/facturación</td><td>3-4 sprints</td><td>12-16 semanas (3-4 meses)</td></tr>
-<tr><td>2</td><td>Estabilización Migración Siniestros a SIPO</td><td><span class="complexity c-alta">ALTA</span></td><td>4</td><td>Job de migración y cálculo deducibles SMMLV</td><td>2-3 sprints</td><td>8-12 semanas (2-3 meses)</td></tr>
-<tr><td>3</td><td>Sincronización Datos Externos (SISA/RUNT)</td><td><span class="complexity c-media">MEDIA</span></td><td>3</td><td>Desincronización entre sistemas externos y core</td><td>1-2 sprints</td><td>4-8 semanas (1-2 meses)</td></tr>
-<tr><td>4</td><td>Estabilización Cotizador Autos (Simon Ventas/Web)</td><td><span class="complexity c-media">MEDIA</span></td><td>3</td><td>Timeouts y errores en flujo de cotización</td><td>1-2 sprints</td><td>4-8 semanas (1-2 meses)</td></tr>
-<tr><td>5</td><td>Corrección Generación PDF Endosos</td><td><span class="complexity c-media">MEDIA</span></td><td>2</td><td>Lógica de distribución de primas en PDF</td><td>1 sprint</td><td>4 semanas (1 mes)</td></tr>
+<tr><td>1</td><td>Corrección Motor de Liquidación y Primas</td><td><span class="complexity c-alta">ALTA</span></td><td>7</td><td>Lógica de cálculo de primas/facturación</td><td>1.5-2 sprints</td><td>6-8 semanas (1.5-2 meses)</td></tr>
+<tr><td>2</td><td>Estabilización Migración Siniestros a SIPO</td><td><span class="complexity c-alta">ALTA</span></td><td>4</td><td>Job de migración y cálculo deducibles SMMLV</td><td>1-1.5 sprints</td><td>4-6 semanas (1-1.5 meses)</td></tr>
+<tr><td>3</td><td>Sincronización Datos Externos (SISA/RUNT)</td><td><span class="complexity c-media">MEDIA</span></td><td>3</td><td>Desincronización entre sistemas externos y core</td><td>0.5-1 sprint</td><td>2-4 semanas (0.5-1 mes)</td></tr>
+<tr><td>4</td><td>Estabilización Cotizador Autos (Simon Ventas/Web)</td><td><span class="complexity c-media">MEDIA</span></td><td>3</td><td>Timeouts y errores en flujo de cotización</td><td>0.5-1 sprint</td><td>2-4 semanas (0.5-1 mes)</td></tr>
+<tr><td>5</td><td>Corrección Generación PDF Endosos</td><td><span class="complexity c-media">MEDIA</span></td><td>2</td><td>Lógica de distribución de primas en PDF</td><td>0.5 sprint</td><td>2 semanas</td></tr>
 <tr><td>6</td><td>Corrección Reporte Pólizas Colectivas (GoAnyWhere)</td><td><span class="complexity c-baja">BAJA</span></td><td>2</td><td>Truncamiento por longitud de nombre tomador</td><td>3-5 días</td><td>3-5 días</td></tr>
 <tr><td>7</td><td>Corrección Permisos y Configuración Usuarios Tronador</td><td><span class="complexity c-baja">BAJA</span></td><td>2</td><td>Configuración de perfiles y permisos</td><td>3-5 días</td><td>3-5 días</td></tr>
 </tbody>
@@ -101,7 +101,7 @@ footer{margin-top:2rem;text-align:center;font-size:.75rem;color:#aaa}
 </ul>
 
 <h4>⏱️ Esfuerzo Técnico</h4>
-<p>Complejidad <span class="complexity c-alta">ALTA</span> — Estimación: 3-4 sprints. Requiere refactorización del core de liquidación, testing extensivo con datos reales y validación con el área de operaciones.</p>
+<p>Complejidad <span class="complexity c-alta">ALTA</span> — Estimación: 1.5-2 sprints (6-8 semanas). Requiere refactorización del core de liquidación, testing extensivo con datos reales y validación con el área de operaciones.</p>
 
 <h4>📎 Incidentes Vinculados</h4>
 <div class="ids">
@@ -135,7 +135,7 @@ footer{margin-top:2rem;text-align:center;font-size:.75rem;color:#aaa}
 </ul>
 
 <h4>⏱️ Esfuerzo Técnico</h4>
-<p>Complejidad <span class="complexity c-alta">ALTA</span> — Estimación: 2-3 sprints. Requiere coordinación con el equipo de SIPO y validación con datos históricos de siniestros migrados incorrectamente.</p>
+<p>Complejidad <span class="complexity c-alta">ALTA</span> — Estimación: 1-1.5 sprints (4-6 semanas). Requiere coordinación con el equipo de SIPO y validación con datos históricos de siniestros migrados incorrectamente.</p>
 
 <h4>📎 Incidentes Vinculados</h4>
 <div class="ids">
@@ -167,7 +167,7 @@ footer{margin-top:2rem;text-align:center;font-size:.75rem;color:#aaa}
 </ul>
 
 <h4>⏱️ Esfuerzo Técnico</h4>
-<p>Complejidad <span class="complexity c-media">MEDIA</span> — Estimación: 1-2 sprints.</p>
+<p>Complejidad <span class="complexity c-media">MEDIA</span> — Estimación: 0.5-1 sprint (2-4 semanas).</p>
 
 <h4>📎 Incidentes Vinculados</h4>
 <div class="ids">
@@ -199,7 +199,7 @@ footer{margin-top:2rem;text-align:center;font-size:.75rem;color:#aaa}
 </ul>
 
 <h4>⏱️ Esfuerzo Técnico</h4>
-<p>Complejidad <span class="complexity c-media">MEDIA</span> — Estimación: 1-2 sprints.</p>
+<p>Complejidad <span class="complexity c-media">MEDIA</span> — Estimación: 0.5-1 sprint (2-4 semanas).</p>
 
 <h4>📎 Incidentes Vinculados</h4>
 <div class="ids">
@@ -224,7 +224,7 @@ footer{margin-top:2rem;text-align:center;font-size:.75rem;color:#aaa}
 </ul>
 
 <h4>⏱️ Esfuerzo Técnico</h4>
-<p>Complejidad <span class="complexity c-media">MEDIA</span> — Estimación: 1 sprint.</p>
+<p>Complejidad <span class="complexity c-media">MEDIA</span> — Estimación: 0.5 sprint (2 semanas).</p>
 
 <h4>📎 Incidentes Vinculados</h4>
 <div class="ids">
